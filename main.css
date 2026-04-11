@@ -1,6 +1,3 @@
-/* Import a Newspaper-style font */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:black&family=Old+Standard+TT:italic&display=swap');
-
 /* --- 1. GLOBAL RESET (The foundation) --- */
 * {
     margin: 0;
@@ -310,7 +307,6 @@ header {
         padding: 25px;
     }
 }
-
 /* --- SERVICES SECTION MASTER --- */
 .services-container {
     padding: 100px 8% !important;
@@ -762,6 +758,7 @@ footer p:last-child {
     font-style: italic;
 }
 
+/* Mobile Fix:
 
 /* --- 1. THE EXTERNAL SPACE (Fixes the bunching) --- */
 .newspaper-display {
@@ -887,57 +884,159 @@ footer p:last-child {
     margin-bottom: 15px;
 }
 
+@media screen and (max-width: 768px) {
+    /* FORCE THE PAGE TO STAY INSIDE THE PHONE WIDTH */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100vw !important;
+        position: relative;
+    }
+
+    .newspaper-wrapper {
+        width: 95% !important; /* Leaves a tiny gap so it doesn't touch the screen edges */
+        max-width: 95vw !important;
+        margin: 10px auto !important;
+        padding: 15px !important;
+        box-sizing: border-box !important; /* CRITICAL: Includes padding in the width calculation */
+        overflow: hidden !important; /* Cuts off anything trying to lag out */
+    }
+
+    /* THE TITLE FIX */
+    .newspaper-wrapper h1, 
+    .the-developer-chronicle-title {
+        font-size: 1.8rem !important; /* Small enough to fit the word 'CHRONICLE' */
+        line-height: 1.2 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    /* FIXING THE COLUMNS */
+    .news-main-grid {
+        display: flex !important;
+        flex-direction: column !important; /* Stacks the columns vertically */
+        width: 100% !important;
+    }
+
+    .main-article, .sidebar {
+        width: 100% !important;
+        margin: 0 0 20px 0 !important;
+    }
+
+    /* FIXING THE SQUASHED IMAGES */
+    .news-img {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    /* 1. Fix the large gaps between words */
+    p {
+        text-align: left !important; /* Stops the 'stretched' word look */
+        line-height: 1.3 !important; /* Pulls lines closer vertically */
+        font-size: 1rem !important;
+        margin-bottom: 10px !important;
+        word-spacing: -1px; /* Pulls words slightly closer together */
+    }
+
+    /* 2. Tighten the Header (The Developer Chronicle) */
+    .newspaper-wrapper h1 {
+        font-size: 1.8rem !important; /* Fits 'CHRONICLE' on one line */
+        margin: 5px 0 !important;
+        line-height: 1.1 !important;
+    }
+
+    /* 3. Remove the extra side-padding that makes it look like a ball */
+    .newspaper-wrapper {
+        width: 98% !important;
+        padding: 10px !important;
+        margin: 5px auto !important;
+    }
+
+    /* 4. Fix images so they fill the width without extra space */
+    .news-img {
+        width: 100% !important;
+        margin: 5px 0 !important;
+    }
+}
 
 
-.catalog-container {
+/* --- 1. THE MAIN ANCHOR --- */
+#catalog-section {
   position: relative;
   display: flex;
-  flex-direction: column; /* This stacks text on top, book in middle */
-  align-items: center;    /* This centers everything horizontally */
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  min-height: 800px;      /* Ensures plenty of space */
-  margin-top: 100px;
-  padding: 40px 20px;
-  text-align: center;     /* Centers the text headers */
+  min-height: 700px;
+  padding: 40px 0;
+  text-align: center;
 }
 
-/* Fix for that title and description that moved to the side */
-.catalog-container h2, 
-.catalog-container p {
-  width: 100%;
-  max-width: 800px;       /* Keeps text from stretching too wide */
-  margin-bottom: 20px;    /* Space between text and the book */
-}
-
+/* --- 2. THE BOOK (Portable Laptop Size) --- */
 .book {
   width: 400px;
   height: 500px;
-  perspective: 1500px;
+  perspective: 2000px; /* Stronger 3D depth */
   position: relative;
-  margin: 0 auto !important; /* Forces the book to stay centered */
+  margin: 0 auto;
 }
 
-/* --- YOUR PAPER LOGIC (KEEPING YOUR EXACT VALUES) --- */
 .paper {
-  width: 350px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   position: absolute;
+  top: 0;
+  left: 0;
   transform-style: preserve-3d;
   transform-origin: left;
-  transition: transform 0.6s;
-  perspective: 1500px;
+  transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
+
 .front, .back {
   width: 100%;
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
 }
-.front { transform: rotateY(0deg); }
-.back { transform: rotateY(180deg); }
-.paper.flipped { transform: rotateY(180deg); z-index: 0; }
 
+.back { transform: rotateY(180deg); }
+
+/* The flip logic for JavaScript */
+.paper.flipped { 
+    transform: rotateY(-180deg); !important;
+}
+
+/* --- 3. THE RED BUTTONS (Locked to side) --- */
+#prev-btn, #next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000; /* Higher than pages */
+  background: red;
+  color: white;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#prev-btn { left: 10px; }
+#next-btn { right: 10px; }
+
+/* --- 4. THE BOUNCER (Hiding from Phone) --- */
+@media screen and (max-width: 600px) {
+    /* This completely removes the catalog and arrows from mobile */
+    #catalog-section, 
+    #prev-btn, 
+    #next-btn, 
+    .desktop-only {
+        display: none !important;
+    }
+}
 /* KEEP ALL YOUR Z-INDEXES (#p1 to #p21) HERE */
 #p1 { z-index: 21; }
 #p2 { z-index: 20; }
@@ -990,36 +1089,174 @@ button {
 button:hover i {
   color: #636363;
 }
+
+/* --- 1. DESKTOP RULES (Laptop) --- */
+@media screen and (min-width: 601px) {
+    .mobile-only { display: none !important; }
+    .desktop-only { display: block !important; }
+}
+
+/* --- 2. MOBILE RULES (Phone) --- */
 @media screen and (max-width: 600px) {
-  /* Shrink the book to fit the phone screen width */
-  .book {
-    width: 320px !important; 
-    height: 400px !important;
-  }
+    /* This kills the catalog and its red arrows completely so they don't sit on text */
+    .desktop-only, #prev-btn, #next-btn, .book-controls { 
+        display: none !important; 
+    }
 
-  /* Shrink the papers to match the book */
-  .paper {
-    width: 280px !important;
-    height: 400px !important;
-  }
+    .mobile-only {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        background: #000 !important; /* Luxury dark feel */
+        padding: 40px 0;
+        min-height: 100vh;
+    }
 
-  /* Move buttons to the bottom so they don't block the images */
-  button {
-    top: auto !important;
-    bottom: -60px !important; /* Puts them below the book */
-    transform: none !important;
-  }
+    .mirror-viewport {
+        position: relative;
+        height: 400px;
+        width: 100%;
+        perspective: 1200px; /* Essential for the 3D depth */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
 
-  #prev-btn {
-    left: 20% !important;
-  }
+    .mirror-item {
+        position: absolute !important; /* This stops them from stacking like a list */
+        width: 260px;
+        height: 380px;
+        transition: all 0.6s ease;
+        opacity: 0;
+    }
+    
+    /* 3D Mirror Positions */
+    .mirror-item.active { 
+        opacity: 1; 
+        transform: translate3d(0, 0, 50px); 
+        z-index: 10; 
+    }
+    .mirror-item.prev { 
+        opacity: 0.4; 
+        transform: translate3d(-120px, 0, -200px) rotateY(40deg); 
+        z-index: 5;
+    }
+    .mirror-item.next { 
+        opacity: 0.4; 
+        transform: translate3d(120px, 0, -200px) rotateY(-40deg); 
+        z-index: 5;
+    }
 
-  #next-btn {
-    right: 20% !important;
-  }
+    .mirror-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+}
 
-  .catalog-container {
-    min-height: 600px !important;
-    padding-bottom: 100px !important; /* Room for the buttons at the bottom */
-  }
+/* --- THE ULTIMATE SLIDER REPAIR (Paste this) --- */
+#mobile-slider-area {
+    position: relative; /* Keeps buttons pinned here */
+    padding: 60px 20px;
+    margin: 40px auto;
+    text-align: center;
+    background: #1a1a1a; /* Fine dark background to make photos pop */
+    border-radius: 15px;
+    max-width: 1200px;
+}
+
+.section-title {
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+/* 1. Button Rescue Logic */
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.m-btn {
+    background: #ffffff; /* Clean white buttons */
+    color: #000;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px; /* Modern pill shape */
+    cursor: pointer;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.m-btn:hover {
+    background: #ff4b2b; /* A nice highlight color when hovering */
+    color: white;
+}
+
+/* 2. Laptop Shrink & Mirror Logic */
+.mirror-viewport {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 450px; /* Perfect height for laptop */
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.mirror-item {
+    position: absolute;
+    width: 320px; /* Fixed width so they don't stretch */
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+}
+
+.mirror-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Desktop 3D View */
+.mirror-item.active { opacity: 1; transform: scale(1.1) translateX(0); z-index: 5; }
+.mirror-item.prev { opacity: 0.5; transform: scale(0.8) translateX(-110%); z-index: 3; }
+.mirror-item.next { opacity: 0.5; transform: scale(0.8) translateX(110%); z-index: 3; }
+
+/* Mobile "Beautiful Slide" View */
+@media (max-width: 768px) {
+    .mirror-viewport {
+        height: 350px; /* Shorter for mobile */
+    }
+
+    .mirror-item {
+        width: 75%; /* Smaller width so we can see the others peaking */
+        display: block !important; /* Force them to show */
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* The "Peeking" Effect */
+    .mirror-item.active { 
+        opacity: 1; 
+        transform: scale(1) translateX(0); 
+        z-index: 5; 
+    }
+
+    .mirror-item.prev { 
+        opacity: 0.3; 
+        transform: scale(0.8) translateX(-85%); /* Peeks from the left */
+        z-index: 3;
+    }
+
+    .mirror-item.next { 
+        opacity: 0.3; 
+        transform: scale(0.8) translateX(85%); /* Peeks from the right */
+        z-index: 3;
+    }
 }
