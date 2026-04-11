@@ -10,7 +10,12 @@ if (menuToggle) {
         menuToggle.classList.toggle('is-active');
     });
 }
-
+// This makes the whole box clickable
+document.querySelectorAll('.service-card').forEach((card) => {
+    card.addEventListener('click', function() {
+        this.querySelector('.card-inner').classList.toggle('is-flipped');
+    });
+});
 // --- 2. SWIPER INITIALIZATION ---
 // We initialize both your project swiper and your future feedback swiper
 var projectSwiper = new Swiper(".mySwiper", {
@@ -68,16 +73,9 @@ const statsObserver = new IntersectionObserver((entries) => {
 
 counters.forEach(c => statsObserver.observe(c));
 });
-// This makes the whole box clickable
-document.querySelectorAll('.service-card').forEach((card) => {
-    card.addEventListener('click', function() {
-        this.querySelector('.card-inner').classList.toggle('is-flipped');
-    });
-});
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Optional flipbook controls – only activate if elements exist
     const nextButton = document.getElementById("next-btn");
     const prevButton = document.getElementById("prev-btn");
     const papers = document.querySelectorAll(".paper");
@@ -86,12 +84,12 @@ document.addEventListener("DOMContentLoaded", function () {
         let currentPage = 0;
         const totalPages = papers.length;
 
-        // Initial z-index setup
+        // Automatically set the stacking order
         papers.forEach((paper, index) => {
             paper.style.zIndex = totalPages - index;
         });
 
-        function goNextPage() {
+        window.goNextPage = function() {
             if (currentPage < totalPages) {
                 papers[currentPage].classList.add("flipped");
                 papers[currentPage].style.zIndex = currentPage + 1;
@@ -99,14 +97,57 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        function goPrevPage() {
+        window.goPrevPage = function() {
             if (currentPage > 0) {
                 currentPage--;
                 papers[currentPage].classList.remove("flipped");
                 papers[currentPage].style.zIndex = totalPages - currentPage;
             }
         }
-        nextButton.addEventListener("click", goNextPage);
-        prevButton.addEventListener("click", goPrevPage);
+
+        nextButton.addEventListener("click", window.goNextPage);
+        prevButton.addEventListener("click", window.goPrevPage);
+        
+        console.log("Catalogue Engine: ONLINE");
     }
-    });
+});
+
+
+// --- MIRROR SLIDER START ---
+try {
+    const mirrorItems = document.querySelectorAll('.mirror-item');
+    const mNext = document.getElementById('m-next');
+    const mPrev = document.getElementById('m-prev');
+
+    if (mirrorItems.length > 0 && mNext && mPrev) {
+        let currentPos = 1;
+        
+        function updateMirror() {
+            mirrorItems.forEach((item, i) => {
+                item.classList.remove('active', 'prev', 'next');
+                const prevIndex = (currentPos - 1 + mirrorItems.length) % mirrorItems.length;
+                const nextIndex = (currentPos + 1) % mirrorItems.length;
+
+                if (i === currentPos) item.classList.add('active');
+                else if (i === prevIndex) item.classList.add('prev');
+                else if (i === nextIndex) item.classList.add('next');
+            });
+        }
+
+        mNext.onclick = () => {
+            currentPos = (currentPos + 1) % mirrorItems.length;
+            updateMirror();
+        };
+
+        mPrev.onclick = () => {
+            currentPos = (currentPos - 1 + mirrorItems.length) % mirrorItems.length;
+            updateMirror();
+        };
+
+        updateMirror();
+        console.log("Gallery initialized successfully.");
+    }
+} catch (e) {
+    console.error("Gallery failed but continuing script:", e);
+}
+// --- MIRROR SLIDER END ---
