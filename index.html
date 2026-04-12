@@ -70,6 +70,11 @@
         </div>
     </section>
 
+    <div class="clock-container">
+    <div id="digital-clock" class="clock-text">00:00:00</div>
+</div>
+
+
     <section id="about" class="text-container">
         <h2>Bridging the Gap Between Design and Logic</h2>
         <p>
@@ -535,6 +540,43 @@
 </div>
 </section>
 
+    <section class="dashboard-section">
+    <div class="dashboard-grid">
+        
+        <div class="dash-card">
+            <div class="dash-header"><i class="fas fa-map-marker-alt"></i> Local Weather</div>
+            <div class="dash-body">
+                <div id="local-weather">Detecting...</div>
+            </div>
+        </div>
+
+        <div class="dash-card">
+            <div class="dash-header"><i class="fas fa-calculator"></i> Currency Converter</div>
+            <div class="dash-body">
+                <div class="converter-box">
+                    <input type="number" id="amount" value="1">
+                    <div class="select-row">
+                        <select id="from-currency">
+                            <option value="USD" selected>USD</option>
+                            <option value="GBP">GBP</option>
+                            <option value="EUR">EUR</option>
+                            <option value="NGN">NGN</option>
+                        </select>
+                        <span>TO</span>
+                        <select id="to-currency">
+                            <option value="NGN" selected>NGN</option>
+                            <option value="USD">USD</option>
+                            <option value="GBP">GBP</option>
+                        </select>
+                    </div>
+                    <div id="conversion-result">₦0.00</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+    
  <section id="catalog-section" class="desktop-only">
     <h2 class="section-title">The Editorial Grid: A Digital Fashion Catalog</h2>
     <p class="section-description">A hand-coded, interactive newspaper-style layout showcasing fashion designs.</p>
