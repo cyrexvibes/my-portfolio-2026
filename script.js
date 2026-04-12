@@ -151,3 +151,100 @@ try {
     console.error("Gallery failed but continuing script:", e);
 }
 // --- MIRROR SLIDER END ---
+
+function startClock() {
+    const clockElement = document.getElementById('digital-clock');
+    if (!clockElement) return;
+
+    setInterval(() => {
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+
+        // Adding leading zeros
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        clockElement.textContent = hours + ":" + minutes + ":" + seconds;
+    }, 1000);
+}
+
+// Run the clock
+startClock();
+
+
+// Function for Smart Weather (Fixed String Concatenation)
+function initSmartWeather() {
+    const weatherBox = document.getElementById('local-weather');
+    const weatherKey = "1f62cf5b43ce33cdfa238100c81f20fe";
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            var lat = pos.coords.latitude;
+            var lon = pos.coords.longitude;
+            
+            // Fixed the URL and HTML strings to avoid those TypeScript errors
+            var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + weatherKey;
+
+            fetch(url)
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    var temp = Math.round(data.main.temp);
+                    var city = data.name;
+                    var desc = data.weather[0].description;
+
+                    weatherBox.innerHTML = '<h2 style="font-size:3rem; margin:0;">' + temp + '°C</h2>' +
+                                           '<p style="color:#00ffcc; margin:5px 0;">' + city + '</p>' +
+                                           '<small style="text-transform:capitalize;">' + desc + '</small>';
+                })
+                .catch(function() { weatherBox.innerText = "Weather Error"; });
+        }, function() {
+            weatherBox.innerText = "Location Denied (Check Abuja)";
+        });
+    }
+}
+
+// Function for Currency (Fixed String Concatenation)
+async function initCurrencyConverter() {
+    const amount = document.getElementById('amount');
+    const from = document.getElementById('from-currency');
+    const to = document.getElementById('to-currency');
+    const result = document.getElementById('conversion-result');
+    const currencyKey = "576e9c8a1d00bb5700913d76";
+
+    async function calculate() {
+        var fromVal = from.value;
+        var toVal = to.value;
+        var amtVal = amount.value || 1;
+
+        // Fixed the URL construction
+        var url = "https://v6.exchangerate-api.com/v6/" + currencyKey + "/latest/" + fromVal;
+
+        try {
+            const res = await fetch(url);
+            const data = await res.json();
+            const rate = data.conversion_rates[toVal];
+            const total = (amtVal * rate).toLocaleString(undefined, {minimumFractionDigits: 2});
+            
+            var symbol = (toVal === 'NGN' ? '₦' : '');
+            result.innerText = symbol + total;
+        } catch (e) { 
+            result.innerText = "Error"; 
+        }
+    }
+
+    // Event listeners
+    amount.addEventListener('input', calculate);
+    from.addEventListener('change', calculate);
+    to.addEventListener('change', calculate);
+    
+    calculate();
+}
+
+// Initialize on Load
+document.addEventListener('DOMContentLoaded', function() {
+    initSmartWeather();
+    initCurrencyConverter();
+});
