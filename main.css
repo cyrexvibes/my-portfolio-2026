@@ -1260,3 +1260,111 @@ button:hover i {
         z-index: 3;
     }
 }
+
+
+.clock-container {
+    padding: 10px 25px;
+    background: #1a1a1a;
+    border-radius: 50px; /* This makes it look like a sleek pill/capsule */
+    display: block;      /* Changed from inline-block */
+    margin: 20px auto;   /* This is the "magic" that centers it perfectly */
+    width: fit-content;  /* Ensures the black box only wraps around the time */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Adds a little depth */
+}
+
+.clock-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00ffcc; 
+    letter-spacing: 2px;
+}
+
+
+/* Container for the whole section */
+.dashboard-section {
+    padding: 40px 20px;
+    background: #0a0a0a; /* Deep dark background */
+}
+
+/* THE GRID: Two columns on laptop, one on mobile */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.dash-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.dash-header {
+    background: #222;
+    color: #00ffcc; /* That Green/Neon you love */
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dash-body {
+    padding: 30px;
+    text-align: center;
+    color: #fff;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Form Styling for Converter */
+.converter-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.converter-box input, .converter-box select {
+    background: #333;
+    color: #00ffcc;
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.select-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #777;
+}
+
+#conversion-result {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+/* MOBILE MEDIA QUERY */
+@media (max-width: 600px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* Forces one card per row on phones */
+    }
+    .dash-body {
+        padding: 20px;
+    }
+    #conversion-result {
+        font-size: 1.5rem;
+    }
+}
