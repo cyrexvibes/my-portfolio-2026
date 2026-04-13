@@ -70,8 +70,9 @@
         </div>
     </section>
 
-    <div class="clock-container">
+
     <div id="digital-clock" class="clock-text">00:00:00</div>
+       <span id="clock-status">Abuja Local Time</span>
 </div>
 
 
@@ -245,7 +246,8 @@
     </div>
 </section>
 
-    <section id="newspaper-display" class="newspaper-display">
+   <section id="newspaper-display" data-aos="fade-up" data-aos-delay="400" 
+    data-aos-duration="1500" data-aos-once="false" class="newspaper-display">
     
     <h2 class="project-title">Project: The Editorial Grid</h2>
     
@@ -577,7 +579,7 @@
     </div>
 </section>
     
- <section id="catalog-section" class="desktop-only">
+<section id="catalog-section" data-aos="zoom-in" data-aos-duration="1500" class="desktop-only">
     <h2 class="section-title">The Editorial Grid: A Digital Fashion Catalog</h2>
     <p class="section-description">A hand-coded, interactive newspaper-style layout showcasing fashion designs.</p>
       
@@ -822,6 +824,28 @@
             <p>Mobile Speed</p>
         </div>
     </section>
+    <section id="contact-section" data-aos="zoom-in-up" style="padding: 60px 20px; text-align: center;">
+    
+    <h2 style="color: #ffcc00; margin-bottom: 30px; font-size: 2.5rem;">CONTACT M.CYREX</h2>
+
+    <form id="contact-form" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+        
+        <input type="text" placeholder="Your Name" required 
+               style="width: 100%; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+        
+        <input type="email" placeholder="Your Email Address" required 
+               style="width: 100%; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+        
+        <textarea placeholder="How can I help you today?" rows="6" required 
+                  style="width: 100%; padding: 15px; border-radius: 8px; border: 1px solid #ddd;"></textarea>
+        
+        <button type="button" onclick="handleFormSubmit()" 
+                style="width: 100%; padding: 18px; background: #ffcc00; color: #000; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase;">
+            Send Message
+        </button> 
+        
+    </form>
+</section>
 <section id="feedback" class="feedback-container">
     <h2 class="section-title">What People Think About Us</h2>
     
@@ -893,5 +917,25 @@
     </a>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="script.js?v=7.0"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000, 
+        once: false,
+        mirror: true,
+        offset: 100
+      });
+    </script>
+
+    <script>
+      function handleFormSubmit() {
+          alert("✅ Success! Thank you for contacting M.Cyrex.");
+          document.getElementById("contact-form").reset();
+          setTimeout(function() {
+              window.scrollTo({top: 0, behavior: 'smooth'});
+          }, 2000); 
+      }
+    </script>
 </body>
 </html>
