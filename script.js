@@ -1,3 +1,35 @@
+/* --- DARK MODE (At the very top of script.js) --- */
+(function() {
+    const toggle = document.querySelector('#checkbox');
+    const root = document.documentElement;
+
+    if (toggle) {
+        // Load saved theme
+        const saved = localStorage.getItem('theme');
+        if (saved) {
+            root.setAttribute('data-theme', saved);
+            toggle.checked = saved === 'dark';
+        }
+
+        // Listen for switch
+        toggle.addEventListener('change', () => {
+            const theme = toggle.checked ? 'dark' : 'light';
+            root.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            console.log("Theme changed to:", theme);
+        });
+    }
+})();
+
+/* --- REST OF YOUR CODE (AOS, Gallery, etc.) --- */
+try {
+    AOS.init({ duration: 1000 });
+} catch (e) {
+    console.log("AOS failed to load, but the rest of the site is fine!");
+}
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
 
 // --- 1. MOBILE MENU TOGGLE ---
