@@ -1,3 +1,24 @@
+/* --- 1. THEME DEFINITIONS --- */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --accent-color: #ffcc00;
+}
+
+[data-theme="dark"] {
+    --bg-color: #0b0b0b;
+    --text-color: #ffffff;
+    --accent-color: #ffcc00;
+}
+
+/* --- 2. GLOBAL APPLICATION --- */
+/* This is the most important part. It forces the change. */
+body, section, main, header, footer, .newspaper-display, #contact-section {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
 /* --- 1. GLOBAL RESET (The foundation) --- */
 * {
     margin: 0;
@@ -1410,4 +1431,75 @@ button:hover i {
     position: relative; /* Forces it to stay in the natural flow */
     margin-top: 10px;
     transition: 0.3s;
+}
+
+
+/* --- 3. THE TOGGLE UI --- */
+.theme-switch-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    width: 48px;
+}
+
+.theme-switch input { display: none; }
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 16px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 16px;
+    border-radius: 50%;
+}
+
+input:checked + .slider { background-color: #ffcc00; }
+input:checked + .slider:before { transform: translateX(24px); }
+
+
+
+/* --- FORCE NEWSPAPER TEXT TO BE SEEN IN DARK MODE --- */
+
+/* 1. This targets the specific IDs and Classes using the Hashtag for strength */
+[data-theme="dark"] #newspaper-display,
+[data-theme="dark"] .newspaper-content,
+[data-theme="dark"] #newspaper-display *, 
+[data-theme="dark"] .newspaper-body p,
+[data-theme="dark"] .newspaper-body {
+    background-color: transparent !important; /* Removes any "cloudy" overlap */
+    color: #ffffff !important;                /* Forces text to PURE WHITE */
+}
+
+/* 2. Fixes the Headlines specifically */
+[data-theme="dark"] #newspaper-display h1,
+[data-theme="dark"] #newspaper-display h2,
+[data-theme="dark"] .newspaper-header h1 {
+    color: var(--accent-color) !important;    /* Makes titles Gold */
+}
+
+/* 3. Removes any "Light Mode" shadows that make it look cloudy */
+[data-theme="dark"] .newspaper-content {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
 }
