@@ -1368,3 +1368,46 @@ button:hover i {
         font-size: 1.5rem;
     }
 }
+
+/* This targets the header inside your contact section */
+#contact-section h2 {
+    text-align: center !important; /* Forces it to the middle */
+    width: 100%;                  /* Ensures it takes up the full width to find the center */
+    margin-bottom: 30px;          /* Gives some space before the form starts */
+    color: #ffcc00;               /* Optional: Matches your gold theme */
+    display: block;
+}
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; /* This stacks everything vertically */
+    gap: 20px; /* This creates a perfect gap so nothing overlaps */
+    padding: 20px;
+}
+
+#contact-form input, 
+#contact-form textarea {
+    width: 100%; /* Makes sure they take up the full width */
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: #333 !important;
+    font-size: 16px;
+    box-sizing: border-box; /* This is CRITICAL to prevent overlapping */
+}
+
+#contact-form button {
+    width: 100%; /* Makes the button the same width as the boxes */
+    padding: 18px;
+    background: #ffcc00;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative; /* Forces it to stay in the natural flow */
+    margin-top: 10px;
+    transition: 0.3s;
+}
