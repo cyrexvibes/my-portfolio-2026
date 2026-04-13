@@ -1578,3 +1578,101 @@ footer {
     display: block !important;
     visibility: visible !important;
 }
+
+
+/* --- UNIQUE PREMIUM FOOTER --- */
+
+footer {
+    padding: 50px 20px;
+    text-align: center;
+    border-top: 2px solid #4a90e2; /* Your blue line, but cleaner */
+    position: relative;
+    overflow: hidden;
+}
+
+/* LIGHT MODE: A very soft grey-to-white gradient to make it unique */
+footer {
+    background: linear-gradient(to bottom, #f9f9f9, #ffffff) !important;
+}
+
+footer p {
+    color: #555 !important;
+    font-weight: 500;
+    margin: 5px 0;
+    letter-spacing: 1px;
+}
+
+/* DARK MODE: A deep charcoal-to-black gradient */
+[data-theme="dark"] footer {
+    background: linear-gradient(to bottom, #111111, #000000) !important;
+    border-top: 2px solid #ffcc00; /* Changes the line to Gold in dark mode! */
+}
+
+[data-theme="dark"] footer p {
+    color: #bbbbbb !important;
+}
+
+/* MAKING THE NAME STAND OUT */
+footer p:first-of-type {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: #1a1a1a !important;
+}
+
+[data-theme="dark"] footer p:first-of-type {
+    color: #ffcc00 !important; /* Moses Onoja Benjamin turns Gold in dark mode */
+}
+
+/* MAKING THE 'OPTIMIZED' TEXT SMALL & MODERN */
+footer p:last-of-type {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+
+/* --- GLASSMORPHIC NAVIGATION MENU --- */
+
+.nav-links {
+    background: rgba(255, 255, 255, 0.7) !important; /* Semi-transparent white */
+    backdrop-filter: blur(12px) saturate(180%); /* The "Frosted" effect */
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+/* DARK MODE: Deep Glass Effect */
+[data-theme="dark"] .nav-links {
+    background: rgba(18, 18, 18, 0.8) !important; /* Semi-transparent dark */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* Link Styling inside the Glass Menu */
+.nav-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Stacks the links vertically like in your photo */
+    gap: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    color: #333 !important;
+}
+
+[data-theme="dark"] .nav-links a {
+    color: #ffffff !important;
+}
+
+/* Hover Effect for a little "glow" */
+.nav-links a:hover {
+    color: #ffcc00 !important;
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.4);
+}
