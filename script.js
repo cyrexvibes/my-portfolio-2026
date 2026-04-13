@@ -248,3 +248,31 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmartWeather();
     initCurrencyConverter();
 });
+
+
+ AOS.init({
+    // Global settings:
+    duration: 1200,     // Smooth speed for all animations
+    once: false,        // THIS is what makes it repeat EVERY time they scroll
+    mirror: true,       // THIS makes it animate again when scrolling back UP
+    offset: 120,        // Starts the move when the section is 120px into the screen
+    anchorPlacement: 'top-bottom', // Ensures it triggers at the right moment
+  });
+
+
+  const contactForm = document.getElementById('contact-form');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        // This prevents the page from refreshing immediately
+        e.preventDefault(); 
+
+        // If the browser says the form is valid (all 'required' fields filled)
+        if (this.checkValidity()) {
+            alert("✅ Success! M.Cyrex has received your message.");
+            this.reset(); // This clears the form after they send it
+        } else {
+            alert("❌ Please fill in all fields correctly.");
+        }
+    });
+}
