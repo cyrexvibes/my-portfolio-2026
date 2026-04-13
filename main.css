@@ -1503,3 +1503,78 @@ input:checked + .slider:before { transform: translateX(24px); }
     box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
     border: 1px solid rgba(255,255,255,0.1) !important;
 }
+
+
+
+/* --- 1. CONTACT SECTION COLORS (LIGHT MODE) --- */
+#contact h2, 
+.contact-card span, 
+footer p {
+    color: #1a1a1a !important; /* Dark text for White background */
+}
+
+.contact-card {
+    border: 2px solid #1a1a1a !important;
+    background-color: transparent !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.3s;
+    z-index: 10; /* Ensures buttons are clickable */
+}
+
+/* --- 2. CONTACT SECTION COLORS (DARK MODE) --- */
+[data-theme="dark"] #contact h2, 
+[data-theme="dark"] .contact-card span, 
+[data-theme="dark"] footer p {
+    color: #ffffff !important; /* White text for Dark background */
+}
+
+[data-theme="dark"] .contact-card {
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* --- 3. FOOTER BACKGROUNDS --- */
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] footer {
+    background-color: transparent !important;
+}
+
+/* --- 4. HOVER EFFECT (WORKS IN BOTH) --- */
+.contact-card:hover {
+    background-color: #ffcc00 !important;
+    border-color: #ffcc00 !important;
+}
+
+.contact-card:hover span {
+    color: #000000 !important; /* Text turns black when hovering on gold */
+} 
+
+/* --- THE FIX FOR ZOOM-IN-UP --- */
+
+/* 1. This matches your "zoom-in-up" trigger exactly */
+#contact-section[data-aos="zoom-in-up"] {
+    opacity: 0 !important;
+    transform: translate3d(0, 100px, 0) scale(0.6) !important;
+    transition-property: transform, opacity !important;
+}
+
+/* 2. This triggers when you scroll down */
+#contact-section.aos-animate {
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1s ease !important;
+}
+
+/* 3. Ensures your inline padding doesn't block the movement */
+#contact-section {
+    display: block !important;
+    visibility: visible !important;
+}
