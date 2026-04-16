@@ -1,3 +1,9 @@
+// Check the memory to see if the user likes Light Mode
+if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-mode');
+}
+
+
 /* search_engine.js */
 
 const database = [
