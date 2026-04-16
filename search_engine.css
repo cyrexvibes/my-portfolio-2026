@@ -1,3 +1,18 @@
+/* Update your Step 1 Variables to include the background */
+body {
+    --input-bg-color: rgba(255, 255, 255, 0.1); /* Dark Mode: Subtle white glow */
+    --input-border-color: rgba(255, 255, 255, 0.2);
+    --input-text-color: #ffffff;
+    --input-placeholder-color: rgba(255, 255, 255, 0.4);
+}
+
+body.light-mode {
+    --input-bg-color: rgba(0, 0, 0, 0.05); /* Light Mode: Subtle dark tint */
+    --input-border-color: rgba(0, 0, 0, 0.1);
+    --input-text-color: #000000; /* BLACK text for light mode */
+    --input-placeholder-color: rgba(0, 0, 0, 0.4);
+}
+
 /* search_engine.css */
 
 #search-section {
@@ -6,17 +21,19 @@
 }
 
 .search-box {
-    position: relative; /* This is the key */
+    position: relative;
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.1);
+    /* CHANGE: Now using a variable for the background */
+    background: var(--input-bg-color, rgba(255, 255, 255, 0.1)); 
     backdrop-filter: blur(15px);
     border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    width: 95%; /* Slightly wider for mobile */
+    /* CHANGE: Now using a variable for the border */
+    border: 1px solid var(--input-border-color);
+    width: 95%;
     max-width: 600px;
     margin: 30px auto;
-    height: 55px; /* Fixed height so it doesn't collapse */
+    height: 55px;
     overflow: hidden;
 }
 
@@ -26,29 +43,30 @@
     background: transparent;
     border: none;
     outline: none;
-    color: white;
+    /* CHANGE: Text color now switches automatically */
+    color: var(--input-text-color);
     font-size: 1rem;
-    padding-left: 25px;   /* Space for cursor on the left */
-    padding-right: 110px; /* IMPORTANT: This stops text from hiding under the button */
+    padding-left: 25px;
+    padding-right: 110px;
     text-align: left;
 }
 
 .search-box button {
-    position: absolute; /* Fixes button to the right side */
+    position: absolute;
     right: 5px;
     background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-    color: white;
+    color: white; /* Button text stays white because the button is blue */
     border: none;
     padding: 8px 20px;
     border-radius: 40px;
     cursor: pointer;
     font-weight: 600;
-    height: 45px; /* Slightly smaller than the box */
+    height: 45px;
 }
 
-/* This makes the placeholder text look professional */
+/* CHANGE: Placeholder color now switches automatically */
 .search-box input::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--input-placeholder-color);
     font-size: 0.9rem;
 }
 
@@ -87,6 +105,24 @@
     font-size: 0.7rem;
     color: #00d2ff;
     text-transform: uppercase;
+}
+
+/* Add this to the bottom of search_engine.css */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001; /* High number to stay on top of the video */
+    text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Makes it visible on bright videos */
+}
+
+.close:hover {
+    color: #00d2ff;
+    transform: scale(1.1);
 }
 
 .item-title {
