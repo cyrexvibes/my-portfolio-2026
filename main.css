@@ -1678,11 +1678,11 @@ footer p:last-of-type {
 }
 
 
-
-/* 1. DEFAULT DARK MODE (When body does NOT have light-mode class) */
+/* 1. DEFAULT DARK MODE (When body is normal) */
 .search-box {
     background: rgba(255, 255, 255, 0.1) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(15px);
 }
 
 .search-box input {
@@ -1693,16 +1693,17 @@ footer p:last-of-type {
     color: rgba(255, 255, 255, 0.4) !important;
 }
 
-/* 2. LIGHT MODE (When body HAS light-mode class) */
+/* 2. LIGHT MODE (When body has light-mode class) */
 body.light-mode .search-box {
-    background: rgba(0, 0, 0, 0.05) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    background: #e0e0e0 !important; /* Solid light grey so it's visible */
+    border: 1px solid #cccccc !important;
+    backdrop-filter: none !important; /* Removes blur to prevent "ghosting" */
 }
 
 body.light-mode .search-box input {
-    color: black !important;
+    color: #000000 !important; /* Pure black text */
 }
 
 body.light-mode .search-box input::placeholder {
-    color: rgba(0, 0, 0, 0.5) !important;
+    color: rgba(0, 0, 0, 0.6) !important; /* Darker placeholder */
 }
