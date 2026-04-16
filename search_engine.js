@@ -53,9 +53,15 @@ function openPlayer(id, type) {
     modal.style.display = "block";
 }
 
+
+// Add or Replace this at the bottom of search_engine.js
 function closePlayer() {
     const modal = document.getElementById('videoModal');
     const player = document.getElementById('videoPlayer');
-    player.src = ""; // Stops video when closed
+
+    // This hides the popup window
     modal.style.display = "none";
+
+    // This kills the audio/video so it doesn't keep playing in the background
+    player.src = ""; 
 }
