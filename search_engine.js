@@ -1,27 +1,3 @@
-// 1. Check memory as soon as the page loads
-if (localStorage.getItem('theme') === 'light') {
-    document.body.classList.add('light-mode');
-}
-
-// 2. Listen for the toggle button click to change theme INSTANTLY
-// Replace 'theme-toggle' with the actual ID of your button
-const toggleBtn = document.getElementById('theme-toggle'); 
-
-if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
-        // Switch the class on the fly
-        document.body.classList.toggle('light-mode');
-        
-        // Save the new choice so it remembers next time
-        if (document.body.classList.contains('light-mode')) {
-            localStorage.setItem('theme', 'light');
-        } else {
-            localStorage.setItem('theme', 'dark');
-        }
-    });
-}
-
-
 /* search_engine.js */
 
 const database = [
