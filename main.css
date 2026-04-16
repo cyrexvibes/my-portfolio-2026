@@ -1676,3 +1676,20 @@ footer p:last-of-type {
     color: #ffcc00 !important;
     text-shadow: 0 0 8px rgba(255, 204, 0, 0.4);
 }
+
+
+/* This ensures that when the body has 'light-mode', 
+   the search box inside the search engine page changes color */
+
+body.light-mode .search-box {
+    background: rgba(0, 0, 0, 0.05) !important; /* Subtle dark background */
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .search-box input {
+    color: #000000 !important; /* Makes text black */
+}
+
+body.light-mode .search-box input::placeholder {
+    color: rgba(0, 0, 0, 0.5) !important; /* Makes placeholder dark grey */
+}
