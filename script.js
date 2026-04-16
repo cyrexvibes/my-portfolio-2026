@@ -1,3 +1,28 @@
+// This function handles the "Remembrance"
+function applySavedTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+    } else {
+        document.body.classList.remove('light-mode');
+    }
+}
+
+// Run it immediately so the user doesn't see a "flash" of the wrong color
+applySavedTheme();
+
+// Also make sure your toggle button updates the memory
+const themeBtn = document.getElementById('theme-toggle'); 
+if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        // Save the current state
+        const isLight = document.body.classList.contains('light-mode');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+}
+
+
 /* --- DARK MODE (At the very top of script.js) --- */
 (function() {
     const toggle = document.querySelector('#checkbox');
