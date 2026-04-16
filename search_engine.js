@@ -67,16 +67,3 @@ function closePlayer() {
 }
 
 
-// Add this to the BOTTOM of search_engine.js
-const searchToggle = document.getElementById('theme-toggle'); 
-
-if (searchToggle) {
-    searchToggle.addEventListener('click', () => {
-        // Toggle the class IMMEDIATELY
-        document.body.classList.toggle('light-mode');
-        
-        // Tell the CSS to update the box right now
-        const isLight = document.body.classList.contains('light-mode');
-        localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    });
-}
