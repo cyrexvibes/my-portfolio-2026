@@ -1708,32 +1708,3 @@ body.light-mode .search-box input::placeholder {
     color: rgba(0, 0, 0, 0.6) !important; /* Darker placeholder */
 }
 
-‎/* --- RESPONSIVE BREAKPOINTS --- */
-‎
-‎/* 1. TABLET VIEW (Screens smaller than 1024px) */
-‎@media (max-width: 1024px) {
-‎    header {
-‎        padding: 20px; /* Give more space */
-‎    }
-‎    .main-text {
-‎        font-size: 1.5rem; /* Make text slightly smaller so it fits */
-‎    }
-‎    /* Add any specific tablet fixes here */
-‎}
-‎
-‎/* 2. MOBILE VIEW (Screens smaller than 768px) */
-‎@media (max-width: 768px) {
-‎    header {
-‎        flex-direction: column; /* Stack logo and menu on top of each other */
-‎        text-align: center;
-‎    }
-‎    .nav-links {
-‎        display: none; /* Usually, you hide the links and show a 'Hamburger' icon here */
-‎    }
-‎    .hero-section {
-‎        padding: 10px;
-‎    }
-‎    h1 {
-‎        font-size: 1.2rem; /* Shrink big titles so they don't break lines awkwardly */
-‎    }
-‎}
