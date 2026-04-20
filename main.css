@@ -321,7 +321,7 @@ header {
 .video-container h3 {
     margin-top: 20px;
     font-size: 1.2rem;
-    color: var(--accent-color); /* Uses your Gold/Electric accent */
+    color: #FFD700; /* Uses your Gold/Electric accent */
     font-weight: 700;
 }
 
