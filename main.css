@@ -234,11 +234,6 @@ header {
     animation: profile-pulse 2s infinite;
     z-index: -1;
 }
-/* Mobile Fix: Makes the profile smaller on phones */
-@media (max-width: 768px) {
-    .hero-intro {
-        padding: 60px 8% !important;
-    }
 
 
 /* Make your titles and text stand out against the dark blue */
@@ -1612,21 +1607,25 @@ button:hover i {
     }
 }
 
-/* --- MOBILE RESPONSIVENESS --- */
+
+/* --- GLOBAL MOBILE RESET (One code for everything) --- */
 @media screen and (max-width: 768px) {
-    /* Make the cards fit the phone screen width */
-    .service-card {
-        width: 90% !important; /* Take up 90% of the screen, not 300px */
-        height: auto !important; /* Let the height grow with the text */
-        margin: 20px auto;      /* Center the card */
+    /* 1. Force everything to fit inside the screen */
+    * {
+        max-width: 100vw !important; /* Forces everything to fit phone width */
+        box-sizing: border-box !important;
     }
 
-    /* Shrink the text so it doesn't touch the edges */
-    h1, h2 {
-        font-size: 1.5rem !important; /* Smaller headings on phones */
-    }
-
+    /* 2. Add padding to the whole body so nothing touches the edges */
     body {
-        padding: 0 15px; /* Adds a "gutter" so text doesn't touch the screen edge */
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        overflow-x: hidden; /* Stops the "side-to-side" scrolling issue */
+    }
+
+    /* 3. Global Text Fix: Straightens everything out */
+    h1, h2, p, span, div {
+        text-align: justify !important;
+        word-break: break-word !important;
     }
 }
