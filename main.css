@@ -1608,24 +1608,12 @@ button:hover i {
 }
 
 
-/* --- GLOBAL MOBILE RESET (One code for everything) --- */
 @media screen and (max-width: 768px) {
-    /* 1. Force everything to fit inside the screen */
-    * {
-        max-width: 100vw !important; /* Forces everything to fit phone width */
-        box-sizing: border-box !important;
-    }
-
-    /* 2. Add padding to the whole body so nothing touches the edges */
     body {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        overflow-x: hidden; /* Stops the "side-to-side" scrolling issue */
-    }
-
-    /* 3. Global Text Fix: Straightens everything out */
-    h1, h2, p, span, div {
-        text-align: justify !important;
-        word-break: break-word !important;
+        /* 1. Shrink the gradient scale for mobile so all colors fit */
+        background-size: 200% 200% !important; 
+        
+        /* 2. Optional: Speed up the animation so you see the colors shift faster */
+        animation: slowFlow 8s ease infinite !important; 
     }
 }
