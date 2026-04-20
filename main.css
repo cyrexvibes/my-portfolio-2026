@@ -234,6 +234,11 @@ header {
     animation: profile-pulse 2s infinite;
     z-index: -1;
 }
+/* Mobile Fix: Makes the profile smaller on phones */
+@media (max-width: 768px) {
+    .hero-intro {
+        padding: 60px 8% !important;
+    }
 
 
 /* Make your titles and text stand out against the dark blue */
