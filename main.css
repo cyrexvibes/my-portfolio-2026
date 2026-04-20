@@ -22,8 +22,7 @@
 body {
     /* 1. Animation & Background Foundation */
     background: linear-gradient(-45deg, #0a192f, #7b2cbf, #008080, #ff6b6b);
-    background-size: cover;
-    background-attachment: fixed;
+    background-size: 400% 400%;
     animation: slowFlow 15s ease infinite;
     
     /* 2. Text & Transition Settings */
@@ -1609,12 +1608,26 @@ button:hover i {
 }
 
 
+/* 1. The Laptop/Desktop view (Your original working style) */
+body {
+    background: linear-gradient(-45deg, #0a192f, #7b2cbf, #008080, #ff6b6b);
+    background-size: 400% 400%;
+    animation: slowFlow 15s ease infinite;
+    background-attachment: fixed;
+}
+
+/* 2. The Mobile view (The custom fix) */
 @media screen and (max-width: 768px) {
     body {
-        /* 1. Shrink the gradient scale for mobile so all colors fit */
-        background-size: 200% 200% !important; 
-        
-        /* 2. Optional: Speed up the animation so you see the colors shift faster */
-        animation: slowFlow 8s ease infinite !important; 
+        /* We keep the 400% so it stays "liquid," 
+           but we adjust the flow for the small screen */
+        background-size: 800% 800% !important; 
+        animation: slowFlow 10s ease infinite !important;
     }
+}
+
+@keyframes slowFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
