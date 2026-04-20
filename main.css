@@ -1573,3 +1573,36 @@ button:hover i {
     transition: 0.3s;
 }
 
+/* --- MOBILE BOX ARRANGEMENT --- */
+@media (max-width: 768px) {
+    /* 1. Makes the Technical Highlights box fill the width properly */
+    .technical-wins {
+        padding: 20px;
+        margin: 10px auto;
+        width: 95%; /* Gives it a little space from the phone edges */
+    }
+
+    /* 2. Fixes the Bullet Points and Text alignment */
+    .technical-wins ul {
+        display: flex;
+        flex-direction: column; /* STACKS the points so they don't overlap */
+        gap: 20px;
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .technical-wins li {
+        display: block; /* Ensures each highlight gets its own line */
+        text-align: left;
+        line-height: 1.5;
+        font-size: 0.95rem;
+    }
+
+    /* 3. Ensures the "Performance:", "Responsiveness:" titles stay bold and clear */
+    .technical-wins b, 
+    .technical-wins strong {
+        display: block; /* Puts the title above the description for better fit */
+        margin-bottom: 5px;
+        color: #2d32b8; /* Matches your Elite theme */
+    }
+}
