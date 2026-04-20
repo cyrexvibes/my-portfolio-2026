@@ -1611,3 +1611,22 @@ button:hover i {
         color: #2d32b8; /* Matches your Elite theme */
     }
 }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media screen and (max-width: 768px) {
+    /* Make the cards fit the phone screen width */
+    .service-card {
+        width: 90% !important; /* Take up 90% of the screen, not 300px */
+        height: auto !important; /* Let the height grow with the text */
+        margin: 20px auto;      /* Center the card */
+    }
+
+    /* Shrink the text so it doesn't touch the edges */
+    h1, h2 {
+        font-size: 1.5rem !important; /* Smaller headings on phones */
+    }
+
+    body {
+        padding: 0 15px; /* Adds a "gutter" so text doesn't touch the screen edge */
+    }
+}
