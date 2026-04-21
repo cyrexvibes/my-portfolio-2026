@@ -479,7 +479,7 @@ header {
 .card-front p {
     color: white;
     opacity: 0.9;           /* Slightly less transparent for better visibility */
-    font-size: 1.5rem;
+    font-size: 1rem;
     line-height: 1.6;
     font-weight: 500;       /* Slightly thicker than standard text */
     padding: 0 10px;        /* Adds breathing room */
@@ -487,7 +487,7 @@ header {
 .card-back p {
     color: white;
     opacity: 0.9;           /* Slightly less transparent for better visibility */
-    font-size: 1.3rem;
+    font-size: 1rem;
     line-height: 1.6;
     font-weight: 500;       /* Slightly thicker than standard text */
     padding: 0 10px;        /* Adds breathing room */
