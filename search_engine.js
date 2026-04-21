@@ -1,69 +1,71 @@
 /* search_engine.js */
 
-const database = [
-    { title: "Burna Boy - Last Last", category: "Music", id: "v7-G6W_XqZ4", type: "youtube" },
-    { title: "Wizkid - Essence ft. Tems", category: "Music", id: "jipQpjUA_o8", type: "youtube" },
-    { title: "Rema - Calm Down", category: "Music", id: "CQLsdm1uGu8", type: "youtube" },
-    { title: "M.Cyrex Portfolio", category: "Work", id: "https://moses-portfolio.netlify.app", type: "website" }
+const API_KEY = 'AIzaSyAPKKM4aPkMcnn2TD3SQcflwSk-WzTxltg'; 
+
+const manualDatabase = [
+    { title: "My 3D Burger Animation", category: "Work", id: "YOUR_MANUAL_ID_HERE", type: "youtube" },
+    { title: "Portfolio Showcase", category: "Work", id: "https://moses-portfolio.netlify.app", type: "website" }
 ];
 
-function performSearch() {
+// Added window wrapper to ensure it's globally accessible
+window.performSearch = async function() {
     const input = document.getElementById('searchInput');
-    const resultsDiv = document.getElementById('results');
-    
-    if (!input || !resultsDiv) return;
-
     const query = input.value.toLowerCase().trim();
+    const resultsDiv = document.getElementById('results');
+
+    if (query === "") { 
+        resultsDiv.innerHTML = ""; 
+        return; 
+    }
+
+    // 1. Filter Local
+    const localMatches = manualDatabase.filter(item => item.title.toLowerCase().includes(query));
+
+    // 2. Fetch API
+    let apiMatches = [];
+    try {
+        const url =     `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=${encodeURIComponent(query)}&key=${API_KEY}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.items) {
+            apiMatches = data.items.map(item => ({
+                title: item.snippet.title,
+                category: "YouTube",
+                id: item.id.videoId,
+                type: "youtube"
+            }));
+        }
+    } catch (err) { 
+        console.error("API Error:", err); 
+    }
+
+    // 3. Render Combined Results (FIXED THE MISSING BACKTICKS HERE)
+    const allResults = [...localMatches, ...apiMatches];
     
-    // 1. Clear suggestions if input is empty
-    resultsDiv.innerHTML = ""; 
-    if (query === "") return;
-
-    // 2. Filter the database for matches
-    const filtered = database.filter(item => 
-        item.title.toLowerCase().includes(query) || 
-        item.category.toLowerCase().includes(query)
-    );
-
-    // 3. Render Suggestions
-    if (filtered.length === 0) {
-        resultsDiv.innerHTML = `<div class="result-item" style="color: white; padding: 15px;">No suggestions found for "${query}"</div>`;
+    if (allResults.length === 0) {
+        resultsDiv.innerHTML = `<div class="result-item" style="color: white; padding: 15px;">No results found.</div>`;
     } else {
-        resultsDiv.innerHTML = filtered.map(item => `
+        resultsDiv.innerHTML = allResults.map(item => `
             <div class="result-item" onclick="openPlayer('${item.id}', '${item.type}')">
-                <div class="info">
-                    <span class="category-tag" style="color: #00d2ff; font-size: 0.7rem; display: block; text-transform: uppercase;">${item.category}</span>
-                    <span class="item-title" style="color: white; font-weight: 500;">${item.title}</span>
+                <div>
+                    <span class="category-tag">${item.category}</span>
+                    <span class="item-title">${item.title}</span>
                 </div>
-                <i class="fas fa-play-circle" style="color: #00d2ff; font-size: 1.2rem;"></i>
+                <i class="fas fa-play-circle" style="color: #00d2ff;"></i>
             </div>
         `).join('');
     }
-}
+};
 
-function openPlayer(id, type) {
+window.openPlayer = function(id, type) {
     const modal = document.getElementById('videoModal');
     const player = document.getElementById('videoPlayer');
-    
-    if (type === "youtube") {
-        player.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
-    } else {
-        player.src = id; 
-    }
     modal.style.display = "block";
-}
+    player.src = (type === "youtube") ? `https://www.youtube.com/embed/${id}?autoplay=1` : id;
+};
 
-
-// Add or Replace this at the bottom of search_engine.js
-function closePlayer() {
-    const modal = document.getElementById('videoModal');
-    const player = document.getElementById('videoPlayer');
-
-    // This hides the popup window
-    modal.style.display = "none";
-
-    // This kills the audio/video so it doesn't keep playing in the background
-    player.src = ""; 
-}
-
-
+window.closePlayer = function() {
+    document.getElementById('videoModal').style.display = "none";
+    document.getElementById('videoPlayer').src = "";
+};
