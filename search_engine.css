@@ -1,19 +1,53 @@
-/* Update your Step 1 Variables to include the background */
-body {
-    --input-bg-color: rgba(255, 255, 255, 0.1); /* Dark Mode: Subtle white glow */
-    --input-border-color: rgba(255, 255, 255, 0.2);
-    --input-text-color: #ffffff;
-    --input-placeholder-color: rgba(255, 255, 255, 0.4);
+/* --- Add this to your search_engine.css --- */
+
+/* Ensures the modal is hidden by default and sits above everything when active */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
 }
 
-body.light-mode {
-    --input-bg-color: rgba(0, 0, 0, 0.05); /* Light Mode: Subtle dark tint */
-    --input-border-color: rgba(0, 0, 0, 0.1);
-    --input-text-color: #000000; /* BLACK text for light mode */
-    --input-placeholder-color: rgba(0, 0, 0, 0.4);
+/* Centers the video player and gives it space */
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: 10% auto;
+    background: transparent;
 }
 
-/* search_engine.css */
+/* The 'X' button is now pinned inside the modal content, not the page header */
+.close {
+    position: absolute;
+    top: -45px; 
+    right: 0;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #00d2ff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Ensure the iframe remains responsive inside the modal */
+#videoPlayer {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
 
 #search-section {
     text-align: center;
@@ -21,19 +55,17 @@ body.light-mode {
 }
 
 .search-box {
-    position: relative;
+    position: relative; /* This is the key */
     display: flex;
     align-items: center;
-    /* CHANGE: Now using a variable for the background */
-    background: var(--input-bg-color, rgba(255, 255, 255, 0.1)); 
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
     border-radius: 50px;
-    /* CHANGE: Now using a variable for the border */
-    border: 1px solid var(--input-border-color);
-    width: 95%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 95%; /* Slightly wider for mobile */
     max-width: 600px;
     margin: 30px auto;
-    height: 55px;
+    height: 55px; /* Fixed height so it doesn't collapse */
     overflow: hidden;
 }
 
@@ -43,30 +75,29 @@ body.light-mode {
     background: transparent;
     border: none;
     outline: none;
-    /* CHANGE: Text color now switches automatically */
-    color: var(--input-text-color);
+    color: white;
     font-size: 1rem;
-    padding-left: 25px;
-    padding-right: 110px;
+    padding-left: 25px;   /* Space for cursor on the left */
+    padding-right: 110px; /* IMPORTANT: This stops text from hiding under the button */
     text-align: left;
 }
 
 .search-box button {
-    position: absolute;
+    position: absolute; /* Fixes button to the right side */
     right: 5px;
     background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-    color: white; /* Button text stays white because the button is blue */
+    color: white;
     border: none;
     padding: 8px 20px;
     border-radius: 40px;
     cursor: pointer;
     font-weight: 600;
-    height: 45px;
+    height: 45px; /* Slightly smaller than the box */
 }
 
-/* CHANGE: Placeholder color now switches automatically */
+/* This makes the placeholder text look professional */
 .search-box input::placeholder {
-    color: var(--input-placeholder-color);
+    color: rgba(255, 255, 255, 0.4);
     font-size: 0.9rem;
 }
 
@@ -79,53 +110,6 @@ body.light-mode {
     flex-direction: column;
     gap: 8px;
     z-index: 100;
+    position: relative;
 }
 
-.result-item {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 15px 20px;
-    border-radius: 12px;
-    border-left: 4px solid #00d2ff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.3s ease;
-    text-align: left;
-}
-
-.result-item:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.02);
-}
-
-.category-tag {
-    display: block;
-    font-size: 0.7rem;
-    color: #00d2ff;
-    text-transform: uppercase;
-}
-
-/* Add this to the bottom of search_engine.css */
-.close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: #ffffff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10001; /* High number to stay on top of the video */
-    text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Makes it visible on bright videos */
-}
-
-.close:hover {
-    color: #00d2ff;
-    transform: scale(1.1);
-}
-
-.item-title {
-    color: white;
-    font-weight: 500;
-}
