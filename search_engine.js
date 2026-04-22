@@ -7,21 +7,27 @@ const manualDatabase = [
     { title: "Portfolio Showcase", category: "Work", id: "https://moses-portfolio.netlify.app", type: "website" }
 ];
 
-// 1. Debounce logic to prevent spamming the API
+// 1. Debounce logic to prevent API spamming and 429 errors
 let debounceTimer;
 
 window.handleSearch = function() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
         performSearch();
-    }, 800); // Wait 800ms after user stops typing
+    }, 800); // Waits 800ms after user stops typing
 };
 
 // 2. Main search function
 window.performSearch = async function() {
     const input = document.getElementById('searchInput');
-    const query = input.value.toLowerCase().trim();
     const resultsDiv = document.getElementById('results');
+    
+    if (!input || !resultsDiv) {
+        console.error("Missing searchInput or results element in HTML!");
+        return;
+    }
+
+    const query = input.value.toLowerCase().trim();
 
     if (query === "") { 
         resultsDiv.innerHTML = ""; 
@@ -38,28 +44,27 @@ window.performSearch = async function() {
         const response = await fetch(url);
         
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        if (data.items) {
-            apiMatches = data.items.map(item => ({
-                title: item.snippet.title,
-                category: "YouTube",
-                id: item.id.videoId,
-                type: "youtube"
-            }));
+            console.error("API response not ok. Status:", response.status);
+        } else {
+            const data = await response.json();
+            if (data.items) {
+                apiMatches = data.items.map(item => ({
+                    title: item.snippet.title,
+                    category: "YouTube",
+                    id: item.id.videoId,
+                    type: "youtube"
+                }));
+            }
         }
     } catch (err) { 
-        console.error("API Error:", err); 
+        console.error("API Fetch Error:", err); 
     }
 
     // Render Combined Results
     const allResults = [...localMatches, ...apiMatches];
     
     if (allResults.length === 0) {
-        resultsDiv.innerHTML = <div class="result-item" style="color: white; padding: 15px;">No results found.</div>;
+        resultsDiv.innerHTML = `<div class="result-item" style="color: white; padding: 15px;">No results found.</div>`;
     } else {
         resultsDiv.innerHTML = allResults.map(item => `
             <div class="result-item" onclick="openPlayer('${item.id}', '${item.type}')">
@@ -76,12 +81,19 @@ window.performSearch = async function() {
 window.openPlayer = function(id, type) {
     const modal = document.getElementById('videoModal');
     const player = document.getElementById('videoPlayer');
-    modal.style.display = "block";
-    player.src = (type === "youtube") ? `https://www.youtube.com/embed/${id}?autoplay=1` : id;
+    if (modal && player) {
+        modal.style.display = "block";
+        player.src = (type === "youtube") ? `https://www.youtube.com/embed/${id}?autoplay=1` : id;
+    }
 };
 
 window.closePlayer = function() {
-    document.getElementById('videoModal').style.display = "none";
-    document.getElementById('videoPlayer').src = "";
+    const modal = document.getElementById('videoModal');
+    const player = document.getElementById('videoPlayer');
+    if (modal && player) {
+        modal.style.display = "none";
+        player.src = "";
+    }
 };
+
 console.log("Search script is loaded and active!");
