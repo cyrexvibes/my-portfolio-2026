@@ -84,3 +84,4 @@ window.closePlayer = function() {
     document.getElementById('videoModal').style.display = "none";
     document.getElementById('videoPlayer').src = "";
 };
+console.log("Search script is loaded and active!");
