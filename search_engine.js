@@ -1,6 +1,6 @@
 /* search_engine.js */
 
-const API_KEY = 'AIzaSyAPKKM4aPkMcnn2TD3SQcflwSk-WzTxltg'; 
+const API_KEY = 'AIzaSyCVVnEA1K-Ud2TPX3JHVJqXPk7hbSnLkhA'; 
 
 const manualDatabase = [
     { title: "My 3D Burger Animation", category: "Work", id: "YOUR_MANUAL_ID_HERE", type: "youtube" },
