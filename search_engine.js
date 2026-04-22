@@ -1,4 +1,4 @@
-* search_engine.js */
+/* search_engine.js */
 
 const API_KEY = 'AIzaSyAPKKM4aPkMcnn2TD3SQcflwSk-WzTxltg'; 
 
@@ -34,11 +34,11 @@ window.performSearch = async function() {
     // Fetch API
     let apiMatches = [];
     try {
-        const url = https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=${encodeURIComponent(query)}&key=${API_KEY};
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=${encodeURIComponent(query)}&key=${API_KEY}`;
         const response = await fetch(url);
         
         if (!response.ok) {
-            throw new Error(HTTP error! status: ${response.status});
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
         
         const data = await response.json();
@@ -77,7 +77,7 @@ window.openPlayer = function(id, type) {
     const modal = document.getElementById('videoModal');
     const player = document.getElementById('videoPlayer');
     modal.style.display = "block";
-    player.src = (type === "youtube") ? https://www.youtube.com/embed/${id}?autoplay=1 : id;
+    player.src = (type === "youtube") ? `https://www.youtube.com/embed/${id}?autoplay=1` : id;
 };
 
 window.closePlayer = function() {
