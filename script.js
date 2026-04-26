@@ -1,3 +1,11 @@
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((reg) => console.log('Service Worker Registered!'))
+      .catch((err) => console.log('SW Registration Failed:', err));
+  });
+}
+
 // This function handles the "Remembrance"
 function applySavedTheme() {
     const savedTheme = localStorage.getItem('theme');
@@ -333,3 +341,39 @@ if (contactForm) {
         }
     });
 }
+
+let deferredPrompt;
+const installButton = document.getElementById('install-button');
+
+// 1. Listen for the browser's permission to install
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installButton.removeAttribute('hidden');
+    console.log("Browser is ready to install!");
+});
+
+// 2. Handle the click
+installButton.addEventListener('click', async () => {
+    if (!deferredPrompt) {
+        console.log("Prompt not ready yet!");
+        return;
+    }
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`User response: ${outcome}`);
+    deferredPrompt = null;
+    installButton.setAttribute('hidden', '');
+});
+
+// 3. THIS IS THE ONLY PART THAT FORCES IT:
+// Keep this here temporarily until the button shows up.
+// Once you see the button, you can delete this specific block.
+window.onload = () => {
+    setTimeout(() => {
+        if (installButton) {
+            installButton.removeAttribute('hidden');
+            console.log("Force-show active!");
+        }
+    }, 2000);
+};
