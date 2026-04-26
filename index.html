@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="main.css?v=4.0">
 </head>
 <body> 
@@ -32,6 +34,9 @@
         <li><a href="search_engine.html">Global Search</a></li>
       <li><a href="#newspaper-display">The Chronicles</a></li>
           <li><a href="#contact">Contact</a></li>
+         <li>
+        <a href="#" id="install-button" class="nav-link-style">Install App</a>
+    </li>
         
         <li class="theme-switch-item">
             <label class="theme-switch" for="checkbox">
@@ -949,5 +954,13 @@
           }, 2000); 
       }
     </script>
+
+     <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(() => console.log('Service Worker registered!'))
+      .catch((err) => console.log('Service Worker failed', err));
+  }
+</script>
 </body>
 </html>
