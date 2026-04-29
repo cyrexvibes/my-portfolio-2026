@@ -229,7 +229,7 @@ header {
 
 /* 4. The Trigger: This keeps it hidden unless it's installable */
 .install-btn[hidden] {
-    display: none !important;
+    display: none;
 }
 
 /* --- STEP 2.5: THE HERO INTRODUCTION --- */
