@@ -344,33 +344,28 @@ if (contactForm) {
 }
 
 let deferredPrompt;
-const installBtn = document.getElementById('install-button');
+const banner = document.getElementById('install-banner');
+const bannerBtn = document.getElementById('banner-install-btn');
 
-// This catches the 'handshake' from the browser
 window.addEventListener('beforeinstallprompt', (e) => {
-    console.log('✅ beforeinstallprompt fired! The browser is ready.');
     e.preventDefault();
     deferredPrompt = e;
-    
-    if (installBtn) {
-        installBtn.style.display = 'block'; // Make sure it's visible
-        installBtn.removeAttribute('hidden');
+    // Show the banner at the bottom instead of hiding it in a menu
+    if (banner) {
+        banner.style.display = 'block';
     }
 });
 
-if (installBtn) {
-    installBtn.addEventListener('click', async () => {
-        console.log('Button clicked!');
-        
-        if (deferredPrompt) {
-            deferredPrompt.prompt(); // This opens the install window
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log(`User response: ${outcome}`);
-            deferredPrompt = null;
-        } else {
-            // If this fires, the browser hasn't sent the handshake yet
-            console.log('❌ No deferredPrompt saved.');
-            alert("Please use the install icon in the browser address bar, as this button is still warming up!");
+bannerBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            banner.style.display = 'none';
         }
-    });
-}
+        deferredPrompt = null;
+    } else {
+        // Backup if the browser is being stubborn
+        alert("To install: Tap the 3 dots (⋮) in Chrome and select 'Install app'!");
+    }
+});
