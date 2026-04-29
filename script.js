@@ -347,25 +347,29 @@ let deferredPrompt;
 const banner = document.getElementById('install-banner');
 const bannerBtn = document.getElementById('banner-install-btn');
 
+// This waits for the browser's "Trust Signal"
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    // Show the banner at the bottom instead of hiding it in a menu
+    
+    // Once the signal is received, the banner pops up!
     if (banner) {
         banner.style.display = 'block';
+        console.log("Install banner is now visible!");
     }
 });
 
-bannerBtn.addEventListener('click', async () => {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
+if (bannerBtn) {
+    bannerBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response: ${outcome}`);
+            deferredPrompt = null;
             banner.style.display = 'none';
+        } else {
+            // Backup if clicked too early
+            alert("To install: Tap the 3 dots (⋮) in your browser and select 'Install app'!");
         }
-        deferredPrompt = null;
-    } else {
-        // Backup if the browser is being stubborn
-        alert("To install: Tap the 3 dots (⋮) in Chrome and select 'Install app'!");
-    }
-});
+    });
+}
