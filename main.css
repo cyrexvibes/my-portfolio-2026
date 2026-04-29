@@ -196,41 +196,6 @@ header {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* 1. The Container for the button row */
-.install-item {
-    list-style: none; /* Removes the default bullet point */
-    margin: 5px 0;    /* Provides breathing room */
-    width: 100%;
-}
-/* 2. The Button styling (Glassmorphism effect) */
-.install-btn {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 600;
-    font-size: 1.1rem;
-    display: block; /* Ensures it stays on its own line */
-    padding: 12px 15px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-}
-
-/* 3. Hover Effect: The "Pro" Interaction */
-.install-btn:hover {
-    background: var(--accent-color);
-    color: #ffffff;
-    transform: translateX(10px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-/* 4. The Trigger: This keeps it hidden unless it's installable */
-.install-btn[hidden] {
-    display: none;
-}
 
 /* --- STEP 2.5: THE HERO INTRODUCTION --- */
 .hero-intro {
