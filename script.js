@@ -344,29 +344,33 @@ if (contactForm) {
 }
 
 let deferredPrompt;
-const installButton = document.getElementById('install-button');
+const installBtn = document.getElementById('install-button');
 
+// This catches the 'handshake' from the browser
 window.addEventListener('beforeinstallprompt', (e) => {
+    console.log('✅ beforeinstallprompt fired! The browser is ready.');
     e.preventDefault();
     deferredPrompt = e;
-    // Force the button to show by changing the style directly
-    if (installButton) {
-        installButton.style.display = 'block'; 
-        installButton.removeAttribute('hidden');
-        console.log("Browser is ready to install! Button should be visible.");
+    
+    if (installBtn) {
+        installBtn.style.display = 'block'; // Make sure it's visible
+        installBtn.removeAttribute('hidden');
     }
 });
 
-if (installButton) {
-    installButton.addEventListener('click', async () => {
-        if (!deferredPrompt) {
-            console.log("Prompt not ready yet!");
-            return;
+if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+        console.log('Button clicked!');
+        
+        if (deferredPrompt) {
+            deferredPrompt.prompt(); // This opens the install window
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response: ${outcome}`);
+            deferredPrompt = null;
+        } else {
+            // If this fires, the browser hasn't sent the handshake yet
+            console.log('❌ No deferredPrompt saved.');
+            alert("Please use the install icon in the browser address bar, as this button is still warming up!");
         }
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        console.log(`User response: ${outcome}`);
-        deferredPrompt = null;
-        installButton.style.display = 'none';
     });
 }
