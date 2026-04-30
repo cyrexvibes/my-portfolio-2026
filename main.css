@@ -1652,20 +1652,19 @@ body {
 }
 
 .pwa-banner {
-    position: relative; /* This stops it from "following" you */
-    display: flex; 
-    flex-direction: column; /* Stacks text above button */
+    display: flex !important;
+    flex-direction: column !important; /* This is the key fix! */
     align-items: center;
     justify-content: center;
-    gap: 15px; /* Puts a clean space between them */
+    gap: 15px; /* Creates space so they don't touch */
+    padding: 30px;
     background: rgba(0, 0, 0, 0.9);
-    padding: 25px;
-    border-radius: 15px;
+    border-radius: 20px;
     width: 90%;
     max-width: 400px;
-    margin: 30px auto; /* Centers the whole box on the page */
+    margin: 40px auto; 
+    position: relative; /* Stays in place, doesn't follow scroll */
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .pwa-banner p {
