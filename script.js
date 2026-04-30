@@ -1,3 +1,14 @@
+// This ignores the browser and forces the banner to show immediately
+document.addEventListener('DOMContentLoaded', () => {
+    const testBanner = document.getElementById('install-banner');
+    if (testBanner) {
+        testBanner.style.display = 'block';
+        testBanner.removeAttribute('hidden');
+        console.log("Forcing visibility test...");
+    }
+});
+
+
 // 1. Correct registration for GitHub Pages
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
