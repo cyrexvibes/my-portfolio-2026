@@ -1656,15 +1656,16 @@ body {
     flex-direction: column !important; /* This is the most important line */
     align-items: center !important;
     justify-content: center !important;
-    gap: 20px !important; /* This creates a gap so they don't touch */
-    padding: 30px !important;
+    gap: 15px !important; /* This creates a gap so they don't touch */
+    padding: 25px !important;
     background: rgba(0, 0, 0, 0.9) !important;
     border-radius: 15px !important;
     width: 90% !important;
     max-width: 400px !important;
-    margin: 40px auto !important;
+    margin: 30px auto !important;
     position: relative !important; /* Keeps it in place between sections */
     text-align: center !important;
+    border: 1px solid rgba (255,  255, 0.2);
 }
 
 .pwa-banner p {
