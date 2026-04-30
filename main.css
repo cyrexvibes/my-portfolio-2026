@@ -1652,32 +1652,38 @@ body {
 }
 
 .pwa-banner {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.9);
+    position: relative; /* This makes it stay in place between sections */
+    margin: 40px auto; /* Adds space around it and centers it */
+    background: rgba(255, 255, 255, 0.05); /* Modern glass look */
     backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    z-index: 10000; /* Extremely high to stay on top */
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    display: flex; /* This aligns the text and button neatly */
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Puts a nice gap between text and button */
+}
+
+.pwa-banner p {
     color: white;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .pwa-banner button {
     background: #007bff;
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
+    padding: 12px 30px;
+    border-radius: 12px;
     font-weight: bold;
     cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
+    width: auto; /* Makes the button only as wide as the text */
+    transition: 0.3s ease;
 }
-
