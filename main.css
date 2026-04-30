@@ -1652,38 +1652,38 @@ body {
 }
 
 .pwa-banner {
-    position: relative; /* This makes it stay in place between sections */
-    margin: 40px auto; /* Adds space around it and centers it */
-    background: rgba(255, 255, 255, 0.05); /* Modern glass look */
+    position: relative; /* Stops it from following you */
+    margin: 40px auto; /* Centers it and adds space between sections */
+    background: rgba(0, 0, 0, 0.8); /* Darker background so text is clear */
     backdrop-filter: blur(10px);
     padding: 25px;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     width: 90%;
-    max-width: 500px;
+    max-width: 450px;
     text-align: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-    display: flex; /* This aligns the text and button neatly */
-    flex-direction: column;
-    align-items: center;
-    gap: 15px; /* Puts a nice gap between text and button */
+    z-index: 100; 
+    display: flex; /* Starts the alignment logic */
+    flex-direction: column; /* Stacks text on top of button */
+    align-items: center; /* Centers everything horizontally */
+    gap: 15px; /* Creates clean space between text and button */
 }
 
 .pwa-banner p {
     color: white;
     margin: 0;
     font-size: 16px;
-    font-weight: 500;
+    line-height: 1.4;
 }
 
 .pwa-banner button {
     background: #007bff;
     color: white;
     border: none;
-    padding: 12px 30px;
-    border-radius: 12px;
+    padding: 12px 25px;
+    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
-    width: auto; /* Makes the button only as wide as the text */
-    transition: 0.3s ease;
+    width: 100%; /* Makes button wide and easy to click */
+    max-width: 200px;
 }
