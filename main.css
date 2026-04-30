@@ -1652,6 +1652,8 @@ body {
 }
 
 .pwa-banner {
+    position: relative !important; /* Keeps it in place between sections */
+    margin: 30px auto !important;
     display: flex !important;
     flex-direction: column !important; /* This is the most important line */
     align-items: center !important;
@@ -1662,8 +1664,6 @@ body {
     border-radius: 15px !important;
     width: 90% !important;
     max-width: 400px !important;
-    margin: 30px auto !important;
-    position: relative !important; /* Keeps it in place between sections */
     text-align: center !important;
     border: 1px solid rgba (255,  255, 0.2);
 }
