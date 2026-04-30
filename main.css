@@ -1653,21 +1653,22 @@ body {
 
 .pwa-wrapper {
     background: #000 !important;
-    padding: 20px !important;
+    padding: 25px !important;
     border-radius: 15px !important;
     width: 90% !important;
-    margin: 30px auto !important;
+    margin: 20px auto !important;
     text-align: center !important;
-    display: block !important; /* Stack containers like bricks */
+    display: block !important; /* Force vertical stacking */
+    border: 1px solid #333;
 }
 
-.banner-text {
-    margin-bottom: 15px !important; /* Forces a gap */
+.banner-text-row {
+    margin-bottom: 15px !important;
 }
 
-.banner-text p {
+.banner-text-row p {
     color: white !important;
-    margin: 0 !important;
+    font-size: 16px;
 }
 
 .banner-button-row {
@@ -1675,10 +1676,9 @@ body {
 }
 
 #banner-install-btn {
-    display: inline-block !important; /* Shows the button properly */
     background: #007bff !important;
     color: white !important;
-    padding: 10px 25px !important;
+    padding: 12px 30px !important;
     border-radius: 8px !important;
     border: none !important;
     font-weight: bold !important;
