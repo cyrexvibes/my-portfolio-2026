@@ -1652,28 +1652,26 @@ body {
 }
 
 .pwa-banner {
-    position: relative; /* Stops it from following you */
-    margin: 40px auto; /* Centers it and adds space between sections */
-    background: rgba(0, 0, 0, 0.8); /* Darker background so text is clear */
-    backdrop-filter: blur(10px);
+    position: relative; /* This stops it from "following" you */
+    display: flex; 
+    flex-direction: column; /* Stacks text above button */
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Puts a clean space between them */
+    background: rgba(0, 0, 0, 0.9);
     padding: 25px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
     width: 90%;
-    max-width: 450px;
+    max-width: 400px;
+    margin: 30px auto; /* Centers the whole box on the page */
     text-align: center;
-    z-index: 100; 
-    display: flex; /* Starts the alignment logic */
-    flex-direction: column; /* Stacks text on top of button */
-    align-items: center; /* Centers everything horizontally */
-    gap: 15px; /* Creates clean space between text and button */
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .pwa-banner p {
-    color: white;
+    color: white !important;
     margin: 0;
     font-size: 16px;
-    line-height: 1.4;
 }
 
 .pwa-banner button {
@@ -1681,9 +1679,8 @@ body {
     color: white;
     border: none;
     padding: 12px 25px;
-    border-radius: 10px;
+    border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    width: 100%; /* Makes button wide and easy to click */
-    max-width: 200px;
+    width: 100%; /* Makes button easy to tap */
 }
