@@ -1651,40 +1651,34 @@ body {
     width: 100%;
 }
 
-/* 1. The Container (The Black Box) */
 .pwa-banner {
-    display: flex !important;
-    flex-direction: column !important; /* Forces the button UNDER the text */
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 15px !important; /* Physical space so they don't touch */
-    padding: 25px !important;
-    background: rgba(0, 0, 0, 0.95) !important;
-    border-radius: 12px !important;
+    display: block !important; /* This stops the flexbox "squishing" */
+    background: #000 !important;
+    padding: 25px 15px !important;
+    border-radius: 15px !important;
     width: 90% !important;
-    max-width: 400px !important;
-    margin: 30px auto !important; /* Keeps it centered on the page */
-    position: relative !important; /* STOP it from floating to the top */
-    height: auto !important; /* Let the box grow to fit the button */
+    margin: 20px auto !important;
+    text-align: center !important;
+    position: relative !important;
+    height: auto !important; /* Box will grow as tall as needed */
 }
 
-/* 2. The Text */
 .pwa-banner p {
     color: white !important;
-    margin: 0 !important;
-    text-align: center !important;
-    font-size: 1rem !important;
+    display: block !important;
+    margin: 0 0 20px 0 !important; /* The 20px bottom margin pushes the button down */
+    font-size: 1.1rem !important;
+    line-height: 1.4 !important;
 }
 
-/* 3. The Blue Button */
 #banner-install-btn {
+    display: inline-block !important; /* Makes it a solid button block */
     background: #007bff !important;
     color: white !important;
+    padding: 12px 25px !important;
+    border-radius: 8px !important;
     border: none !important;
-    padding: 10px 20px !important;
-    border-radius: 6px !important;
     font-weight: bold !important;
-    cursor: pointer !important;
-    width: auto !important; /* Keeps it from stretching too wide */
-    display: block !important;
+    width: auto !important;
+    min-width: 150px !important;
 }
