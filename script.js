@@ -1,3 +1,39 @@
+let deferredPrompt;
+const pwaBanner = document.getElementById('install-banner');
+const pwaButton = document.getElementById('banner-install-btn');
+
+// 1. The Browser sends a "Signal" when it's ready to install
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault(); // Stop the browser's default small bar
+    deferredPrompt = e; // Save the signal in our variable
+    
+    // NOW the banner shows up because we have the "Key" to install
+    if (pwaBanner) {
+        pwaBanner.style.display = 'flex'; 
+        console.log("Install signal received!");
+    }
+});
+
+// 2. When the customer clicks your "Install Now" button
+if (pwaButton) {
+    pwaButton.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            // This opens the real Google Install Window
+            deferredPrompt.prompt();
+            
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response: ${outcome}`);
+            
+            // Clean up
+            deferredPrompt = null;
+            pwaBanner.style.display = 'none';
+        } else {
+            // Backup instruction if the signal hasn't arrived yet
+            alert("To install M.Cyrex: Tap the 3 dots (⋮) in Chrome and select 'Install app'!");
+        }
+    });
+}
+
 // This function handles the "Remembrance"
 function applySavedTheme() {
     const savedTheme = localStorage.getItem('theme');
@@ -330,42 +366,6 @@ if (contactForm) {
             this.reset(); // This clears the form after they send it
         } else {
             alert("❌ Please fill in all fields correctly.");
-        }
-    });
-}
-
-let deferredPrompt;
-const pwaBanner = document.getElementById('install-banner');
-const pwaButton = document.getElementById('banner-install-btn');
-
-// 1. The Browser sends a "Signal" when it's ready to install
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault(); // Stop the browser's default small bar
-    deferredPrompt = e; // Save the signal in our variable
-    
-    // NOW the banner shows up because we have the "Key" to install
-    if (pwaBanner) {
-        pwaBanner.style.display = 'flex'; 
-        console.log("Install signal received!");
-    }
-});
-
-// 2. When the customer clicks your "Install Now" button
-if (pwaButton) {
-    pwaButton.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            // This opens the real Google Install Window
-            deferredPrompt.prompt();
-            
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log(`User response: ${outcome}`);
-            
-            // Clean up
-            deferredPrompt = null;
-            pwaBanner.style.display = 'none';
-        } else {
-            // Backup instruction if the signal hasn't arrived yet
-            alert("To install M.Cyrex: Tap the 3 dots (⋮) in Chrome and select 'Install app'!");
         }
     });
 }
