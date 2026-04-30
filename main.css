@@ -1651,37 +1651,37 @@ body {
     width: 100%;
 }
 
-.pwa-banner {
-    display: flex !important;
-    flex-direction: column !important; /* Forces the vertical stack */
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 20px !important; /* Creates the physical gap */
-    padding: 30px !important; /* Gives room inside the box */
+.pwa-wrapper {
+    display: block !important; /* No flex here, just stack them naturally */
     background: #000 !important;
+    padding: 20px !important;
     border-radius: 15px;
-    width: 90% !important;
-    max-width: 400px;
-    margin: 40px auto !important;
-    position: relative !important; /* Stays between sections */
-    height: auto !important; /* Box grows with content */
-    min-height: 160px !important; /* Ensures it's never too small */
+    width: 90%;
+    margin: 20px auto;
+    text-align: center;
 }
 
-.pwa-banner p {
+.banner-text-box {
+    margin-bottom: 20px !important; /* This creates a wall between text and button */
+    display: block !important;
+}
+
+.banner-text-box p {
     color: white !important;
     margin: 0 !important;
-    font-size: 16px !important;
-    line-height: 1.4 !important;
+}
+
+.banner-action-box {
+    display: block !important;
+    width: 100% !important;
 }
 
 #banner-install-btn {
     background: #007bff !important;
     color: white !important;
-    padding: 12px 25px !important;
-    border-radius: 8px !important;
-    width: 100% !important;
-    max-width: 220px !important;
-    font-weight: bold !important;
-    border: none !important;
+    padding: 12px 30px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    width: 200px;
 }
