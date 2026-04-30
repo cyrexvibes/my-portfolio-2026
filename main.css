@@ -1675,7 +1675,7 @@ body {
     display: block !important; /* Ensures it takes up the full top row */
 }
 
-.pwa-banner button {
+#banner-install-btn {
     background: #007bff !important;
     color: white !important;
     border: none !important;
