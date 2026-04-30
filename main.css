@@ -1677,12 +1677,3 @@ body {
     display: block !important; /* Ensures it takes up the full top row */
 }
 
-#banner-install-btn {
-    background: #007bff !important;
-    color: white !important;
-    border: none !important;
-    padding: 12px 25px !important;
-    border-radius: 8px !important;
-    width: 100% !important; /* Makes button easy to tap */
-    max-width: 200px !important;
-}
