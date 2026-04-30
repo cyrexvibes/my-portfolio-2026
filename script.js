@@ -1,23 +1,3 @@
-// This ignores the browser and forces the banner to show immediately
-document.addEventListener('DOMContentLoaded', () => {
-    const testBanner = document.getElementById('install-banner');
-    if (testBanner) {
-        testBanner.style.display = 'block';
-        testBanner.removeAttribute('hidden');
-        console.log("Forcing visibility test...");
-    }
-});
-
-
-// 1. Correct registration for GitHub Pages
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js') // Removed the /
-            .then((reg) => console.log('Service Worker Registered!', reg.scope))
-            .catch((err) => console.log('SW Registration Failed:', err));
-    });
-}
-
 // This function handles the "Remembrance"
 function applySavedTheme() {
     const savedTheme = localStorage.getItem('theme');
@@ -354,33 +334,15 @@ if (contactForm) {
     });
 }
 
-let deferredPrompt;
-const banner = document.getElementById('install-banner');
-const bannerBtn = document.getElementById('banner-install-btn');
-
-// This waits for the browser's "Trust Signal"
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    
-    // Once the signal is received, the banner pops up!
-    if (banner) {
-        banner.style.display = 'block';
-        console.log("Install banner is now visible!");
+// FORCING THE BANNER TO SHOW IMMEDIATELY
+document.addEventListener('DOMContentLoaded', () => {
+    const testBanner = document.getElementById('install-banner');
+    if (testBanner) {
+        testBanner.style.display = 'block'; 
+        testBanner.style.visibility = 'visible';
+        testBanner.removeAttribute('hidden');
+        console.log("Banner forced to show!");
+    } else {
+        console.log("Could not find the banner ID");
     }
 });
-
-if (bannerBtn) {
-    bannerBtn.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log(`User response: ${outcome}`);
-            deferredPrompt = null;
-            banner.style.display = 'none';
-        } else {
-            // Backup if clicked too early
-            alert("To install: Tap the 3 dots (⋮) in your browser and select 'Install app'!");
-        }
-    });
-}
