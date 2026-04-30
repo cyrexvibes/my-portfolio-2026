@@ -1653,33 +1653,33 @@ body {
 
 .pwa-banner {
     display: flex !important;
-    flex-direction: column !important; /* This is the key fix! */
-    align-items: center;
-    justify-content: center;
-    gap: 15px; /* Creates space so they don't touch */
-    padding: 30px;
-    background: rgba(0, 0, 0, 0.9);
-    border-radius: 20px;
-    width: 90%;
-    max-width: 400px;
-    margin: 40px auto; 
-    position: relative; /* Stays in place, doesn't follow scroll */
-    text-align: center;
+    flex-direction: column !important; /* This is the most important line */
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 20px !important; /* This creates a gap so they don't touch */
+    padding: 30px !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    border-radius: 15px !important;
+    width: 90% !important;
+    max-width: 400px !important;
+    margin: 40px auto !important;
+    position: relative !important; /* Keeps it in place between sections */
+    text-align: center !important;
 }
 
 .pwa-banner p {
     color: white !important;
-    margin: 0;
-    font-size: 16px;
+    margin: 0 !important;
+    font-size: 1.1rem !important;
+    display: block !important; /* Ensures it takes up the full top row */
 }
 
 .pwa-banner button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%; /* Makes button easy to tap */
+    background: #007bff !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 25px !important;
+    border-radius: 8px !important;
+    width: 100% !important; /* Makes button easy to tap */
+    max-width: 200px !important;
 }
