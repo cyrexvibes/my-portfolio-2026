@@ -1651,23 +1651,40 @@ body {
     width: 100%;
 }
 
+/* 1. The Container (The Black Box) */
 .pwa-banner {
     display: flex !important;
-    flex-direction: column !important; /* This forces the stack */
+    flex-direction: column !important; /* Forces the button UNDER the text */
     align-items: center !important;
-    gap: 15px !important;
-    background: black !important;
-    padding: 20px !important;
+    justify-content: center !important;
+    gap: 15px !important; /* Physical space so they don't touch */
+    padding: 25px !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+    border-radius: 12px !important;
     width: 90% !important;
-    margin: 20px auto !important;
-    border-radius: 10px;
+    max-width: 400px !important;
+    margin: 30px auto !important; /* Keeps it centered on the page */
+    position: relative !important; /* STOP it from floating to the top */
+    height: auto !important; /* Let the box grow to fit the button */
 }
 
+/* 2. The Text */
+.pwa-banner p {
+    color: white !important;
+    margin: 0 !important;
+    text-align: center !important;
+    font-size: 1rem !important;
+}
+
+/* 3. The Blue Button */
 #banner-install-btn {
     background: #007bff !important;
     color: white !important;
-    padding: 10px 20px !important;
-    border-radius: 5px !important;
     border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 6px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    width: auto !important; /* Keeps it from stretching too wide */
     display: block !important;
 }
