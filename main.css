@@ -1736,6 +1736,33 @@ body {
     transition: transform 0.3s ease;
 }
 
+
+/* --- THE ENGINE: This makes them move! --- */
+
+/* This moves the first row to the left */
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+}
+
+/* This moves the second row to the right */
+@keyframes scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* --- THE CONNECTION: Apply the engine to the content --- */
+.marquee-content {
+    display: flex;
+    /* Ensure this matches the name in the @keyframes above */
+    animation: scroll-left 40s linear infinite !important; 
+}
+
+.marquee-reverse .marquee-content {
+    /* Ensure this matches the scroll-right name */
+    animation: scroll-right 40s linear infinite !important;
+}
+
 /* --- THE MEDIA QUERIES (THE RESPONSIVE MAGIC) --- */
 
 /* 1. TABLET VIEW (iPad/Tablets) */
