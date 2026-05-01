@@ -1693,76 +1693,91 @@ body {
 
 
 
-/* --- Logo Showcase Section --- */
+/* --- THE LOGO SHOWCASE SECTION (RESPONSIVE) --- */
+
 .logos-container {
-    padding: 60px 0;
-    background: #000; /* Luxury black background */
-    overflow: hidden; /* Hides logos as they exit the screen */
+    padding: 80px 0; /* Standard padding */
+    margin: 40px 0;
+    background: rgba(255, 255, 255, 0.05) !important; 
+    backdrop-filter: blur(15px) saturate(150%) !important; 
+    -webkit-backdrop-filter: blur(15px) saturate(150%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
 }
 
 .section-title {
     text-align: center;
-    color: #fff;
+    color: #ffffff;
     margin-bottom: 40px;
     font-size: 1.8rem;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     text-transform: uppercase;
 }
 
-/* The Marquee Wrapper */
 .marquee {
     display: flex;
     width: 100%;
-    margin-bottom: 30px; /* Space between the two rows */
+    margin-bottom: 40px;
 }
 
-/* The actual moving content */
 .marquee-content {
     display: flex;
-    gap: 60px; /* Space between each logo */
-    animation: scroll-left 30s linear infinite; /* Smooth, non-stop movement */
+    gap: 100px; /* Big gap for Desktop */
+    animation: scroll-left 40s linear infinite;
 }
 
-/* Logo styling */
 .marquee-content img {
-    height: 60px; /* Adjust height for mobile/desktop */
+    height: 60px; /* Big for Laptop */
     width: auto;
-    filter: grayscale(100%) brightness(200%); /* Makes them uniform white/gray */
-    opacity: 0.6;
-    transition: transform 0.3s, filter 0.3s, opacity 0.3s;
+    filter: none !important;      
+    opacity: 1 !important;       
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
-.marquee-content img:hover {
-    filter: none; /* Shows original colors on hover */
-    opacity: 1;
-    transform: scale(1.1); /* Slight pop-out effect */
-}
+/* --- THE MEDIA QUERIES (THE RESPONSIVE MAGIC) --- */
 
-/* Row 2: Reverse Direction */
-.marquee-reverse .marquee-content {
-    animation: scroll-right 30s linear infinite;
-}
-
-/* --- THE ANIMATIONS --- */
-
-/* Row 1: Moves Left */
-@keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Resets halfway through the double list */
-}
-
-/* Row 2: Moves Right */
-@keyframes scroll-right {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
-}
-
-/* Mobile Tweak: Speed up or slow down based on screen size */
-@media screen and (max-width: 768px) {
+/* 1. TABLET VIEW (iPad/Tablets) */
+@media screen and (max-width: 1024px) {
+    .logos-container {
+        padding: 60px 0;
+    }
     .marquee-content img {
-        height: 40px; /* Smaller logos for phones */
+        height: 50px; /* Slightly smaller */
     }
     .marquee-content {
-        animation-duration: 20s; /* Faster scroll on small screens */
+        gap: 70px; /* Tighter gap */
+    }
+}
+
+/* 2. MOBILE VIEW (Phones) */
+@media screen and (max-width: 768px) {
+    .logos-container {
+        padding: 50px 0;
+    }
+    .section-title {
+        font-size: 1.4rem; /* Smaller title so it doesn't wrap weirdly */
+        margin-bottom: 30px !important;
+    }
+    .marquee {
+        margin-bottom: 30px;
+    }
+    .marquee-content img {
+        height: 40px; /* Much smaller for phone screens */
+    }
+    .marquee-content {
+        gap: 50px; /* Narrow gap for small screens */
+        animation-duration: 25s; /* Speed it up so it feels more active on mobile */
+    }
+}
+
+/* 3. VERY SMALL PHONES */
+@media screen and (max-width: 480px) {
+    .marquee-content img {
+        height: 35px;
+    }
+    .marquee-content {
+        gap: 40px;
     }
 }
